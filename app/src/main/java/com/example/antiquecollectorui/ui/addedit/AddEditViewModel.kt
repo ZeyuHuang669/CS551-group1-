@@ -37,8 +37,8 @@ class AddEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val editItemId: Int? = savedStateHandle["itemId"]
-
+    private val editItemId: Int? = savedStateHandle.get<Int>("itemId")
+        ?.takeIf { it != -1 }
     private val _uiState = MutableStateFlow(AddEditUiState(itemId = editItemId))
     val uiState: StateFlow<AddEditUiState> = _uiState
 
